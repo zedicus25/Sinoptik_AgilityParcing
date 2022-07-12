@@ -2,9 +2,11 @@
 using Sinoptik.Model;
 using System;
 using System.Collections.Generic;
+using System.IO;
 using System.Linq;
 using System.Net;
 using System.Text;
+using System.Threading;
 using System.Threading.Tasks;
 
 namespace Sinoptik.Controller
@@ -16,7 +18,6 @@ namespace Sinoptik.Controller
         private WebClient _client;
         private string _html;
         private HtmlDocument _htmlDocument;
-
         public SinoptikController()
         {
             _client = new WebClient();
@@ -25,19 +26,36 @@ namespace Sinoptik.Controller
             _html = Encoding.UTF8.GetString(_client.DownloadData("https://sinoptik.ua/"));
             _htmlDocument = new HtmlDocument();
             _htmlDocument.LoadHtml(_html);
+            GetWeather();
+        }
+
+        public void GetWeather()
+        {
             GetHoursTempearures();
             GetOtherInfo();
         }
 
         private void GetHoursTempearures()
         {
+
+            if (HourTemperatures.Count > 0)
+            {
+                foreach (var item in HourTemperatures)
+                {
+                    File.Delete(item.Icon);
+                }
+                HourTemperatures.Clear();
+            }
+
             HtmlNodeCollection HoursNodes = _htmlDocument.DocumentNode.SelectNodes("//tr[@class='gray time']//td");
             HtmlNodeCollection ImgNodes = _htmlDocument.DocumentNode.SelectNodes("//tr[@class='img weatherIcoS']//td//div//img['@class=weatherImg']");
             HtmlNodeCollection TemperatureNodes = _htmlDocument.DocumentNode.SelectNodes("//tr[@class='temperature']//td");
             HtmlNodeCollection TemperatureSensNodes = _htmlDocument.DocumentNode.SelectNodes("//tr[@class='temperatureSens']//td");
             HtmlNodeCollection PressureWindNodes = _htmlDocument.DocumentNode.SelectNodes("//tr[@class='gray']//td");
-            HtmlNodeCollection WetnessPrecipitationNodes = _htmlDocument.DocumentNode.SelectNodes("//div[@class='rSide']//tbody//tr[not(@class)]//td"); 
-           
+            HtmlNodeCollection WetnessPrecipitationNodes = _htmlDocument.DocumentNode.SelectNodes("//div[@class='rSide']//tbody//tr[not(@class)]//td");
+            
+            
+
             for (int i = 0; i < 8; i++)
             {
                 string hours = HoursNodes[i].InnerText;

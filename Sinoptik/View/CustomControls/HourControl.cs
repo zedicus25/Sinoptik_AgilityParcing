@@ -4,6 +4,7 @@ using System.Collections.Generic;
 using System.ComponentModel;
 using System.Data;
 using System.Drawing;
+using System.IO;
 using System.Linq;
 using System.Net;
 using System.Text;
@@ -33,7 +34,14 @@ namespace Sinoptik.View.CustomControls
             this.windL.Text = hourTemperature.Wind.ToString();
             this.wetnessL.Text = hourTemperature.Wetness.ToString();
             this.precipitL.Text = hourTemperature.Precipitation;
-            this.weatherPB.Image = Image.FromFile(hourTemperature.Icon);
+            byte[] bytes = File.ReadAllBytes(hourTemperature.Icon);
+            FileStream fs = new FileStream(hourTemperature.Icon, FileMode.Open, FileAccess.Read, FileShare.None);
+            fs.Read(bytes, 0, bytes.Length);
+            this.weatherPB.Image = new Bitmap(fs);
+            fs.Close();
+            fs.Dispose();
+            GC.Collect(GC.GetGeneration(fs));
+            GC.Collect(GC.GetGeneration(bytes));
         }
     }
 }

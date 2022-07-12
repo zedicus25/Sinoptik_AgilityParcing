@@ -163,7 +163,7 @@
             this.Controls.Add(this.weatherTodayL);
             this.Controls.Add(this.todayWeatherControl1);
             this.Name = "MainForm";
-            this.Text = "Form1";
+            this.Text = "Sinoptik";
             ((System.ComponentModel.ISupportInitialize)(this.weatherPB)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.termL)).EndInit();
             this.ResumeLayout(false);
