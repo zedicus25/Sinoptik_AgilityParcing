@@ -19,8 +19,27 @@ namespace Sinoptik
         {
             InitializeComponent();
             _sinoptikController = new SinoptikController();
-            TodayWeatherControl td = new TodayWeatherControl(_sinoptikController.HourTemperatures);
-            this.Controls.Add(td);
+            UpdateWeather();
+            
+        }
+
+        private void UpdateWeather()
+        {
+            Control[] controls = this.Controls.Find("todayWeatherControl1", false);
+            for (int i = 0; i < controls.Length; i++)
+            {
+                (controls[i] as TodayWeatherControl).UpdateData(_sinoptikController.HourTemperatures);
+            }
+
+            weatherPB.Image = Image.FromFile(_sinoptikController.Info.Icon);
+            weatherTodayL.Text = _sinoptikController.Info.WeatherToday;
+            lightDayL.Text = $"{_sinoptikController.Info.Sunrise} {_sinoptikController.Info.Decine}";
+            dayInfoL.Text = _sinoptikController.Info.DayInfo;
+            historyInfoL.Text = _sinoptikController.Info.PeopleWeather;
+            historyTempL.Text = _sinoptikController.Info.HistoryInfo;
+            minTempL.Text = _sinoptikController.Info.MinTemperature;
+            maxTempL.Text = _sinoptikController.Info.MaxTemperature;
+            currentTempL.Text = _sinoptikController.Info.CurrentTemperature;
         }
     }
 }

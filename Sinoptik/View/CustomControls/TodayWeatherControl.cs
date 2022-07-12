@@ -20,6 +20,11 @@ namespace Sinoptik.View.CustomControls
 
         public TodayWeatherControl(List<HourTemperature> hourTemperatures) : this()
         {
+            UpdateData(hourTemperatures);
+        }
+
+        public void UpdateData(List<HourTemperature> hourTemperatures)
+        {
             for (int i = 0; i < this.Controls.Count; i++)
             {
                 if (this.Controls[i].Name.Contains("panel"))
@@ -29,10 +34,10 @@ namespace Sinoptik.View.CustomControls
                         if (this.Controls[i].Controls[j].Name.Contains("hourControl"))
                         {
                             (this.Controls[i].Controls[j] as HourControl).UpdateData(hourTemperatures.Last());
-                            hourTemperatures.RemoveAt(hourTemperatures.Count-1);
+                            hourTemperatures.RemoveAt(hourTemperatures.Count - 1);
                         }
                     }
-                   
+
                 }
             }
         }

@@ -86,13 +86,18 @@ namespace Sinoptik.Controller
             Info.HistoryInfo = node?.InnerText;
 
             node = _htmlDocument.DocumentNode.SelectSingleNode("//p[@class='infoHistoryval']");
-            string maxMin = node?.InnerText.Replace("&deg;", "");
+            string maxMin = node?.InnerText.Replace("deg;", "");
             maxMin = maxMin.Insert(maxMin.IndexOf(')')+1," |");
             string[] temps = maxMin.Split('|');
             Info.MaxTemperature = temps[0].Trim();
             Info.MinTemperature = temps[1].Trim();
 
             Info.WeatherToday = _htmlDocument.DocumentNode.SelectSingleNode("//p[@class='today-time']")?.InnerText;
+
+            GC.Collect(GC.GetGeneration(node));
+            GC.Collect(GC.GetGeneration(nodes));
+            GC.Collect(GC.GetGeneration(temps));
+
 
         }
     }
