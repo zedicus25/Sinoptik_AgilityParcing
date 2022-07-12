@@ -1,4 +1,5 @@
-﻿using System;
+﻿using Sinoptik.Controller;
+using System;
 using System.Collections.Generic;
 using System.ComponentModel;
 using System.Data;
@@ -10,11 +11,13 @@ using System.Windows.Forms;
 
 namespace Sinoptik
 {
-    public partial class Form1 : Form
+    public partial class MainForm : Form
     {
-        public Form1()
+        SinoptikController _sinoptikController;
+        public MainForm()
         {
             InitializeComponent();
+            _sinoptikController = new SinoptikController();
         }
     }
 }
