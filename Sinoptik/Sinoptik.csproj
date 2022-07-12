@@ -52,6 +52,18 @@
     <Compile Include="Controller\SinoptikController.cs" />
     <Compile Include="Model\HourTemperature.cs" />
     <Compile Include="Model\OtherInfo.cs" />
+    <Compile Include="View\CustomControls\HourControl.cs">
+      <SubType>UserControl</SubType>
+    </Compile>
+    <Compile Include="View\CustomControls\HourControl.Designer.cs">
+      <DependentUpon>HourControl.cs</DependentUpon>
+    </Compile>
+    <Compile Include="View\CustomControls\TodayWeatherControl.cs">
+      <SubType>UserControl</SubType>
+    </Compile>
+    <Compile Include="View\CustomControls\TodayWeatherControl.Designer.cs">
+      <DependentUpon>TodayWeatherControl.cs</DependentUpon>
+    </Compile>
     <Compile Include="View\MainForm.cs">
       <SubType>Form</SubType>
     </Compile>
@@ -69,6 +81,15 @@
       <AutoGen>True</AutoGen>
       <DependentUpon>Resources.resx</DependentUpon>
     </Compile>
+    <EmbeddedResource Include="View\CustomControls\HourControl.resx">
+      <DependentUpon>HourControl.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="View\CustomControls\TodayWeatherControl.resx">
+      <DependentUpon>TodayWeatherControl.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="View\MainForm.resx">
+      <DependentUpon>MainForm.cs</DependentUpon>
+    </EmbeddedResource>
     <None Include="packages.config" />
     <None Include="Properties\Settings.settings">
       <Generator>SettingsSingleFileGenerator</Generator>

@@ -1,4 +1,5 @@
 ﻿using Sinoptik.Controller;
+using Sinoptik.View.CustomControls;
 using System;
 using System.Collections.Generic;
 using System.ComponentModel;
@@ -18,6 +19,8 @@ namespace Sinoptik
         {
             InitializeComponent();
             _sinoptikController = new SinoptikController();
+            TodayWeatherControl td = new TodayWeatherControl(_sinoptikController.HourTemperatures);
+            this.Controls.Add(td);
         }
     }
 }

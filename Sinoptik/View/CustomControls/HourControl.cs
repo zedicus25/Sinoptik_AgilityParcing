@@ -1,0 +1,39 @@
+﻿using Sinoptik.Model;
+using System;
+using System.Collections.Generic;
+using System.ComponentModel;
+using System.Data;
+using System.Drawing;
+using System.Linq;
+using System.Net;
+using System.Text;
+using System.Threading.Tasks;
+using System.Windows.Forms;
+
+namespace Sinoptik.View.CustomControls
+{
+    public partial class HourControl : UserControl
+    {
+        public HourControl()
+        {
+            InitializeComponent();
+        }
+
+        public HourControl(HourTemperature hourTemperature) : this()
+        {
+            UpdateData(hourTemperature);
+        }
+        
+        public void UpdateData(HourTemperature hourTemperature)
+        {
+            this.hoursL.Text = hourTemperature.Hours;
+            this.mainTempL.Text = hourTemperature.MainTemperature;
+            this.sensTempL.Text = hourTemperature.SensTemperature;
+            this.pressL.Text = hourTemperature.Pressure.ToString();
+            this.windL.Text = hourTemperature.Wind.ToString();
+            this.wetnessL.Text = hourTemperature.Wetness.ToString();
+            this.precipitL.Text = hourTemperature.Precipitation;
+            this.weatherPB.Image = Image.FromFile(hourTemperature.Icon);
+        }
+    }
+}

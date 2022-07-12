@@ -6,7 +6,7 @@ using System.Threading.Tasks;
 
 namespace Sinoptik.Model
 {
-    internal class HourTemperature
+    public class HourTemperature
     {
         public string Hours { get; set; }
         public string Icon { get; set; }
@@ -15,8 +15,8 @@ namespace Sinoptik.Model
         public int Pressure { get; set; }
         public int Wetness { get; set; }
         public float Wind { get; set; }
-        public int Precipitation { get; set; }
-        public HourTemperature(string hours, string icon, string mainTemp, string sensTemp, int press, float wind)
+        public string Precipitation { get; set; }
+        public HourTemperature(string hours, string icon, string mainTemp, string sensTemp, int press, float wind,int wetness,string precipitation)
         {
             Hours = hours;
             Icon = icon;
@@ -24,6 +24,8 @@ namespace Sinoptik.Model
             SensTemperature = sensTemp;
             Pressure = press;
             Wind = wind;
+            Wetness = wetness;
+            Precipitation = precipitation;
         }
     }
 }

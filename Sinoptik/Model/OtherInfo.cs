@@ -6,8 +6,9 @@ using System.Threading.Tasks;
 
 namespace Sinoptik.Model
 {
-    internal class OtherInfo
+    public class OtherInfo
     {
+        public string WeatherToday { get; set; }
         public string Thermometer { get; set; }
         public string Icon { get; set; }
         public string CurrentTemperature { get; set; }
